@@ -1,4 +1,8 @@
-﻿using Store.Web.Models;
+﻿#region
+
+using Store.Web.Models;
+
+#endregion
 
 namespace Store.Web.Services.IServices;
 

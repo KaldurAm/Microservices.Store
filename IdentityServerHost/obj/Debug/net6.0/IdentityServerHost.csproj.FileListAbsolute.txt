@@ -385,3 +385,4 @@ C:\Users\kmerg\source\Learning\dotnet\microservices\IdentityServerHost\obj\Debug
 C:\Users\kmerg\source\Learning\dotnet\microservices\IdentityServerHost\obj\Debug\net6.0\ref\IdentityServerHost.dll
 C:\Users\kmerg\source\Learning\dotnet\microservices\IdentityServerHost\obj\Debug\net6.0\IdentityServerHost.pdb
 C:\Users\kmerg\source\Learning\dotnet\microservices\IdentityServerHost\obj\Debug\net6.0\IdentityServerHost.genruntimeconfig.cache
+C:\Users\kmerg\source\Learning\dotnet\microservices\IdentityServerHost\bin\Debug\net6.0\keys\is-signing-key-2ED8A051CC54438C50777D3D4A233646.json

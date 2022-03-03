@@ -1,4 +1,5 @@
-using AutoMapper;
+#region
+
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -6,21 +7,23 @@ using Store.ProductApi;
 using Store.ProductApi.Database;
 using Store.ProductApi.Repository;
 
+#endregion
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
 
 // Configure Authentication and Identity server
-builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer("Bearer", options =>
+builder.Services.AddAuthentication("Bearer").AddJwtBearer("Bearer", options =>
+{
+    options.Authority = "https://localhost:7241";
+
+    options.TokenValidationParameters = new TokenValidationParameters
     {
-        options.Authority = "https://localhost:7241/";
-        options.TokenValidationParameters = new TokenValidationParameters
-        {
-            ValidateAudience = false
-        };
-    });
+        ValidateAudience = false,
+    };
+});
 
 builder.Services.AddAuthorization(options =>
 {
@@ -33,10 +36,15 @@ builder.Services.AddAuthorization(options =>
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
 builder.Services.AddSwaggerGen(c =>
 {
-    c.SwaggerDoc("v1", new OpenApiInfo { Title = "Web Store Microservices", Description = "Test web store using microservice architecture", });
+    c.SwaggerDoc("v1",
+        new OpenApiInfo
+            { Title = "Web Store Microservices", Description = "Test web store using microservice architecture" });
+
     c.EnableAnnotations();
+
     c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Description = "Enter bearer and your token",
@@ -45,6 +53,7 @@ builder.Services.AddSwaggerGen(c =>
         Type = SecuritySchemeType.ApiKey,
         Scheme = "Bearer",
     });
+
     c.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
         {
@@ -70,7 +79,7 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 });
 
 // Configure automapper
-IMapper mapper = MappingConfig.RegisterMaps().CreateMapper();
+var mapper = MappingConfig.RegisterMaps().CreateMapper();
 builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
@@ -87,9 +96,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

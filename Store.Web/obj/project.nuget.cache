@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "n/DNcLbXaI0u2QcfpED9NCic2WqqrU6tiyBSKQh2VS2HWUdlVCze4LFq1alNpCS3J0aH06WouSt9caX4VOQ/wA==",
+  "dgSpecHash": "aMct7KFXl87qbkCLFJOay59Ww7crlogq4XwETwQ2GrCn2qqDtdBzQ0FZo3TDtKeCcDyhgT4aD2a5PLYUov2fXA==",
   "success": true,
   "projectFilePath": "C:\\Users\\kmerg\\source\\Learning\\dotnet\\microservices\\Store.Web\\Store.Web.csproj",
   "expectedPackageFiles": [

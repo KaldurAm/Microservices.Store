@@ -1,4 +1,8 @@
-﻿using Store.Web.Options;
+﻿#region
+
+using Store.Web.Options;
+
+#endregion
 
 namespace Store.Web.Models;
 

@@ -1,6 +1,10 @@
-﻿using AutoMapper;
+﻿#region
+
+using AutoMapper;
 using Store.ProductApi.Models;
 using Store.ProductApi.Models.Dto;
+
+#endregion
 
 namespace Store.ProductApi;
 

@@ -4,7 +4,6 @@ C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\n
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\Store.ProductApi.deps.json
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\Store.ProductApi.runtimeconfig.json
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\Store.ProductApi.dll
-C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\ref\Store.ProductApi.dll
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\Store.ProductApi.pdb
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\AutoMapper.dll
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
@@ -59,6 +58,7 @@ C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\n
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\scopedcss\bundle\Store.ProductApi.styles.css
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\Store.ProductApi.csproj.CopyComplete
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\Store.ProductApi.dll
-C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\ref\Store.ProductApi.dll
+C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\refint\Store.ProductApi.dll
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\Store.ProductApi.pdb
 C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\Store.ProductApi.genruntimeconfig.cache
+C:\Users\kmerg\source\Learning\dotnet\microservices\Store.ProductApi\obj\Debug\net6.0\ref\Store.ProductApi.dll

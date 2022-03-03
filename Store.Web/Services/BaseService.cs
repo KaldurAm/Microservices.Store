@@ -1,22 +1,27 @@
-﻿using System.Text;
+﻿#region
+
+using System.Text;
 using Newtonsoft.Json;
 using Store.Web.Models;
 using Store.Web.Options;
 using Store.Web.Services.IServices;
+
+#endregion
 
 namespace Store.Web.Services;
 
 public class BaseService : IBaseService
 {
     private readonly IHttpClientFactory _httpClientFactory;
-    /// <inheritdoc />
-    public ResponseDto Response { get; set; }
 
     public BaseService(IHttpClientFactory httpClientFactory)
     {
         _httpClientFactory = httpClientFactory;
         Response = new ResponseDto();
     }
+
+    /// <inheritdoc />
+    public ResponseDto Response { get; set; }
 
     /// <inheritdoc />
     public async Task<T> SendAsync<T>(ApiRequest request)
@@ -28,7 +33,10 @@ public class BaseService : IBaseService
             message.Headers.Add("Accept", "appication/json");
             message.RequestUri = new Uri(request.Url);
             client.DefaultRequestHeaders.Clear();
-            message.Content = new StringContent(JsonConvert.SerializeObject(request.Data), Encoding.UTF8, "application/json");
+
+            message.Content = new StringContent(JsonConvert.SerializeObject(request.Data), Encoding.UTF8,
+                "application/json");
+
             message.Method = request.ApiType switch
             {
                 ApiType.POST => HttpMethod.Post,
@@ -37,9 +45,11 @@ public class BaseService : IBaseService
                 ApiType.GET => HttpMethod.Get,
                 _ => message.Method,
             };
+
             var response = await client.SendAsync(message);
             var content = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<T>(content);
+
             return result;
         }
         catch (Exception ex)
@@ -47,15 +57,20 @@ public class BaseService : IBaseService
             ResponseDto dto = new()
             {
                 DisplayMessage = "Error",
-                ErrorMessages = new List<string> { Convert.ToString(ex.Message), },
+                ErrorMessages = new List<string> { Convert.ToString(ex.Message) },
                 IsSuccess = false,
             };
+
             var res = JsonConvert.SerializeObject(dto);
             var response = JsonConvert.DeserializeObject<T>(res);
+
             return response;
         }
     }
-    
+
     /// <inheritdoc />
-    public void Dispose() => GC.SuppressFinalize(true);
+    public void Dispose()
+    {
+        GC.SuppressFinalize(true);
+    }
 }

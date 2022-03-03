@@ -1,42 +1,43 @@
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+#region
+
 using IdentityServerHost.Database;
-using IdentityServerHost.Initializer;
 using IdentityServerHost.Models;
 using IdentityServerHost.Options;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
+#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Add web dependencies
 builder.Services.AddRazorPages();
 
-// Configure sql server database
+// Add services to the DI container.
+//builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+
+// Add sql server database
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-{
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
-});
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
-var identityServerBuilder = builder.Services.AddIdentityServer(options =>
+builder.Services.AddIdentityServer(options =>
     {
         options.Events.RaiseErrorEvents = true;
         options.Events.RaiseInformationEvents = true;
         options.Events.RaiseFailureEvents = true;
         options.Events.RaiseSuccessEvents = true;
         options.EmitStaticAudienceClaim = true;
-    })
-    .AddInMemoryIdentityResources(Roles.IdentityResources)
-    .AddInMemoryApiScopes(Roles.ApiScopes)
-    .AddInMemoryClients(Roles.Clients)
-    .AddAspNetIdentity<ApplicationUser>();
+    }).AddInMemoryIdentityResources(Roles.IdentityResources).AddInMemoryApiScopes(Roles.ApiScopes)
+    .AddInMemoryClients(Roles.Clients).AddAspNetIdentity<ApplicationUser>().AddDeveloperSigningCredential();
 
-identityServerBuilder.AddDeveloperSigningCredential();
+// builder.Services.BuildServiceProvider()
+//     .GetRequiredService<IDbInitializer>()
+//     .Initialize();
 
-// Configure services
-builder.Services.AddScoped<IDbInitializer, DbInitializer>();
-
+// Build Application and configure application pipeline
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -45,13 +46,11 @@ if (!app.Environment.IsDevelopment())
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
+
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 app.UseIdentityServer();
 app.UseAuthorization();
-app.MapRazorPages();
-var provider = builder.Services.BuildServiceProvider();
-var dependency = provider.GetRequiredService<IDbInitializer>();
-dependency.Initialize();
+app.MapRazorPages().RequireAuthorization();
 app.Run();

@@ -1,4 +1,8 @@
-﻿using Store.ProductApi.Models.Dto;
+﻿#region
+
+using Store.ProductApi.Models.Dto;
+
+#endregion
 
 namespace Store.ProductApi.Repository;
 

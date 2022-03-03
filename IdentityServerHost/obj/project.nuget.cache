@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "haN3DSY6Y/EbOvXo4xMCBBiq8ib+dYNNf4P565DZvv+5OwrZB4S2vGXL7FEM9WjIZZx+dvmMkabe0YP2r7jWOA==",
+  "dgSpecHash": "dCzhtmmhlBA0uvKncbw64+9dCsDRghYnEydaf4D1BDREgPNIknV3rKOu6eTsqDoK1VrkmAOhhGFNTLx8VtTiyg==",
   "success": true,
   "projectFilePath": "C:\\Users\\kmerg\\source\\Learning\\dotnet\\microservices\\IdentityServerHost\\IdentityServerHost.csproj",
   "expectedPackageFiles": [

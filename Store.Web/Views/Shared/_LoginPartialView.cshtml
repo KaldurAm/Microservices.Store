@@ -1,5 +1,5 @@
 ﻿<ul class="navbar-nav">
-    @if (User.Identity.IsAuthenticated)
+    @if (User?.Identity?.IsAuthenticated ?? false)
     {
         <li class="nav-item">
             <a class="nav-link" href="#">Hello @User.Identity.Name</a>
@@ -15,4 +15,3 @@
         </li>
     }
 </ul>
-
